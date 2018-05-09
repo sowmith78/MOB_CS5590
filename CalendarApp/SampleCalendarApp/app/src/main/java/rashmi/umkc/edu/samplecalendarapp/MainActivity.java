@@ -1,37 +1,49 @@
 package rashmi.umkc.edu.samplecalendarapp;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.CalendarView;
-import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.displaycalendareventintent.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
-    public TextView text;
-    public SimpleDateFormat simpleDateFormat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        CalendarView simpleCalendarView = (CalendarView) findViewById(R.id.calander);
-        simpleCalendarView.setDate(Calendar.getInstance().getTimeInMillis(),false,true);
-        text = (TextView)findViewById(R.id.date);
-        simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        text.setText(simpleDateFormat.format(new Date()));
-        simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        Button disp = (Button) findViewById(R.id.dispbut);
+        disp.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                Calendar c1 = GregorianCalendar.getInstance();
-                c1.set(year, month, dayOfMonth);
-                text.setText(simpleDateFormat.format(c1.getTime()));
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                disp();
             }
         });
     }
+
+    public void disp() {
+        Calendar startTime = Calendar.getInstance();
+        startTime.set(2013, 2, 13, 11, 35);
+        Uri uri = Uri.parse("content://com.android.calendar/time/"
+                + String.valueOf(startTime.getTimeInMillis()));
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        // Use the Calendar app to view the time.
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
 }

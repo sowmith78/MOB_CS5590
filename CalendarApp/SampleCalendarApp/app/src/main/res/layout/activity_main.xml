@@ -5,31 +5,13 @@
     android:layout_height="match_parent"
     tools:context="rashmi.umkc.edu.samplecalendarapp.MainActivity" >
 
-    <TextView
-        android:id="@+id/title"
+    <Button
+        android:id="@+id/dispbut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/calander"
-        android:text="Today is:"
-        android:textColor="@android:color/background_dark"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="11dp"
-        android:layout_toEndOf="@+id/title"
-        android:text=""
-        android:textColor="@android:color/background_dark"
-        android:textSize="20dp" />
-
-    <CalendarView
-        android:id="@+id/calander"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="Display Event" />
 
 </RelativeLayout>
